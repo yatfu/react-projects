@@ -9,6 +9,16 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [tours, setTours] = useState([]); // holds json data
 
+  const removeTour = (id) => {
+    const newTours = tours.filter((tour) => tour.id != id) // filters all tours w/ given id
+    setTours(newTours)
+  }
+
+  const resetTours = () => {
+    console.log('Reset Tours')
+    fetchTours()
+  }
+
   const fetchTours = async () => { // fetches data onto tours useState value
     setLoading(true)
     try {
@@ -36,7 +46,7 @@ function App() {
   }
 
   else return <main>
-    <Tours tours={tours}/>
+    <Tours tours={tours} removeTour={removeTour} resetTours={resetTours}/>
   </main>
 }
 
