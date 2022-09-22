@@ -7,15 +7,15 @@ const url = 'https://course-api.com/react-tours-project'
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [tours, setTours] = useState([]);
+  const [tours, setTours] = useState([]); // holds json data
 
-  const fetchTours = async () => {
+  const fetchTours = async () => { // fetches data onto tours useState value
     setLoading(true)
     try {
       const response = await fetch(url)
       const tours = await response.json();
       setTours(tours)
-      //console.log(tours) // DEBUG
+      // console.log(tours) // DEBUG
       setLoading(false)
     } catch (error) {
       console.log(error)
@@ -36,7 +36,7 @@ function App() {
   }
 
   else return <main>
-    <Tours />
+    <Tours tours={tours}/>
   </main>
 }
 
